@@ -77,8 +77,18 @@ return [
         'class'    => Database::class,
         'dsn'      => 'mysql:dbname=test;host=127.0.0.1',
         'username' => 'root',
-        'password' => 'swoft123456',
+        'password' => '123456',
         'charset' => 'utf8mb4',
+        'options'  => [
+            PDO::ATTR_CASE => PDO::CASE_NATURAL
+        ],
+        'config'   => [
+            'collation' => 'utf8mb4_unicode_ci',
+            'strict'    => true,
+            'timezone'  => '+8:00',
+            'modes'     => 'NO_ENGINE_SUBSTITUTION,STRICT_TRANS_TABLES',
+            'fetchMode' => PDO::FETCH_ASSOC
+        ]
     ],
     'db2'               => [
         'class'      => Database::class,
