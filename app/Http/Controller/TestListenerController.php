@@ -21,33 +21,27 @@ use Swoft\Http\Server\Annotation\Mapping\RequestMapping;
 use Swoft\Http\Message\Response;
 
 /**
- * Class TestController
+ * Class TestListenerController
  *
  * @since 2.0
  *
- * @Controller()
+ * @Controller(prefix="tl")
  */
-class TestController
+class TestListenerController
 {
 
-    /**
-     * @Inject()
-     * @var Sandy
-     */
-    private $sandy;
+
 
     /**
-     * @RequestMapping("/test")
-     *
-     * @return Response
+     * 该方法路由地址为 /tl/test
+     * @RequestMapping(route="test")
      */
-    public function my(): Response
+    public function test()
     {
-        $this->sandy->setName("xxx");
-        return context()->getResponse()->withContent($this->sandy->getName());
+        \Swoft::trigger("sandy",null,"sandy","age",["sex"=>"男"]);
     }
 
-
+    
 
 
 }

@@ -21,33 +21,28 @@ use Swoft\Http\Server\Annotation\Mapping\RequestMapping;
 use Swoft\Http\Message\Response;
 
 /**
- * Class TestController
+ * Class TestRouteController
  *
  * @since 2.0
  *
- * @Controller()
+ * @Controller(prefix="tr")
  */
-class TestController
+class TestRouteController
 {
 
-    /**
-     * @Inject()
-     * @var Sandy
-     */
-    private $sandy;
+
 
     /**
-     * @RequestMapping("/test")
-     *
-     * @return Response
+     * 该方法路由地址为 /tr/test
+     * @RequestMapping(route="test")
      */
-    public function my(): Response
+    public function test()
     {
-        $this->sandy->setName("xxx");
-        return context()->getResponse()->withContent($this->sandy->getName());
+
+        return "Success";
     }
 
-
+    
 
 
 }
