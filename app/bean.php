@@ -73,23 +73,50 @@ return [
             \Swoft\Http\Server\Middleware\ValidatorMiddleware::class
         ]
     ],
-    'db'                => [
-        'class'    => Database::class,
-        'dsn'      => 'mysql:dbname=test;host=127.0.0.1',
-        'username' => 'root',
-        'password' => '123456',
-        'charset' => 'utf8mb4',
-        'options'  => [
-            PDO::ATTR_CASE => PDO::CASE_NATURAL
-        ],
+//    'db'                => [
+//        'class'    => Database::class,
+//        'dsn'      => 'mysql:dbname=test;host=127.0.0.1',
+//        'username' => 'root',
+//        'password' => '123456',
+//        'charset' => 'utf8mb4',
+//        'options'  => [
+//            PDO::ATTR_CASE => PDO::CASE_NATURAL
+//        ],
+//        'config'   => [
+//            'collation' => 'utf8mb4_unicode_ci',
+//            'strict'    => true,
+//            'timezone'  => '+8:00',
+//            'modes'     => 'NO_ENGINE_SUBSTITUTION,STRICT_TRANS_TABLES',
+//            'fetchMode' => PDO::FETCH_ASSOC
+//        ]
+//    ],
+
+
+    'db' => [
+        'charset'  => 'utf8mb4',
         'config'   => [
             'collation' => 'utf8mb4_unicode_ci',
             'strict'    => true,
             'timezone'  => '+8:00',
-            'modes'     => 'NO_ENGINE_SUBSTITUTION,STRICT_TRANS_TABLES',
-            'fetchMode' => PDO::FETCH_ASSOC
+            'modes'     => 'NO_ENGINE_SUBSTITUTION,STRICT_TRANS_TABLES'
+        ],
+        'writes' => [
+            [
+                'dsn'      => 'mysql:dbname=db_write;host=127.0.0.1:3306',
+                'username' => 'root',
+                'password' => '123456'
+            ]
+        ],
+        'reads'  => [
+            [
+                'dsn'      => 'mysql:dbname=db_read;host=127.0.0.1:3306',
+                'username' => 'root',
+                'password' => '123456'
+            ]
         ]
     ],
+
+
     'db2'               => [
         'class'      => Database::class,
         'dsn'        => 'mysql:dbname=test2;host=127.0.0.1',

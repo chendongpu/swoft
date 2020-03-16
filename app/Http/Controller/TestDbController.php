@@ -12,6 +12,7 @@ namespace App\Http\Controller;
 
 use App\Http\Bean\Sandy;
 use App\Model\Entity\SandyUser;
+use App\Model\Entity\TUser;
 use App\Model\Logic\RequestBean;
 use App\Model\Logic\RequestBeanTwo;
 use Swoft\Bean\Annotation\Mapping\Inject;
@@ -122,6 +123,46 @@ class TestDbController
 
     }
 
+
+    /**
+     * 该方法路由地址为 /td/exec
+     * @RequestMapping(route="exec")
+     */
+    public function exec()
+    {
+//     创建两个数据库插入一样的数据进行读取和修改验证查询是不是db_read中的数据，修改是不是db_write中的数据
+//    USE `db_read`;
+//    CREATE TABLE `t_user` (
+//        `id` INT(11) NOT NULL AUTO_INCREMENT,
+//      `mobile` VARCHAR(255) NOT NULL DEFAULT '',
+//      `password` VARCHAR(255) NOT NULL DEFAULT '',
+//      `createtime` DATETIME NOT NULL,
+//      PRIMARY KEY (`id`)
+//    ) ENGINE=INNODB  DEFAULT CHARSET=utf8;
+//
+//    INSERT INTO `t_user` (`mobile`,`password`,createtime)   VALUES ('1','1',NOW()) ,('2','2',NOW()) ,('3','3',NOW()) ,('4','4',NOW()) ;
+//
+//    USE `db_write`;
+//    CREATE TABLE `t_user` (
+//        `id` INT(11) NOT NULL AUTO_INCREMENT,
+//      `mobile` VARCHAR(255) NOT NULL DEFAULT '',
+//      `password` VARCHAR(255) NOT NULL DEFAULT '',
+//      `createtime` DATETIME NOT NULL,
+//      PRIMARY KEY (`id`)
+//    ) ENGINE=INNODB  DEFAULT CHARSET=utf8;
+//
+//    INSERT INTO `t_user` (`mobile`,`password`,createtime)   VALUES ('1','1',NOW()) ,('2','2',NOW()) ,('3','3',NOW()) ,('4','4',NOW()) ;
+
+
+        //单行数据查询
+        //return TUser::find(1, ['id', 'mobile','password','createtime']);
+        //数据更新
+        $user = TUser::find(1);
+
+        $user->setMobile("555555555555555");
+        $user->save();
+        return "Success";
+    }
     
 
 
