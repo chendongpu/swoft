@@ -11,6 +11,7 @@
 namespace App\Http\Controller;
 
 use App\Http\Bean\Sandy;
+use App\Model\Logic\BusinessLogic;
 use App\Model\Logic\RequestBean;
 use App\Model\Logic\RequestBeanTwo;
 use App\Model\Validate\UserValidate;
@@ -33,15 +34,15 @@ class TestValidateController
 
     /**
      * @Inject()
-     * @var UserValidate
+     * @var BusinessLogic
      */
-    private $validate;
+    private $businessLogic;
 
     /**
      * 该方法路由地址为 /tv/test
      * @RequestMapping(route="test")
      */
-    public function test()
+    public function test(Response $response)
     {
         $data=[
             'email'=>"2323178881@qq.com",
@@ -49,11 +50,10 @@ class TestValidateController
             'password'=>'123456',
             'passwords'=>'123456',
         ];
-        if(!$this->validate->scene('create')->check($data)){
-            return $this->validate->getError();
-        }else{
-            return "success";
-        }
+
+
+        $this->businessLogic->create($data);
+        return $response->withData(["code"=>200,"msg"=>"success"]);
 
     }
 
