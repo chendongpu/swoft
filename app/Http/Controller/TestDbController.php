@@ -18,6 +18,7 @@ use App\Model\Logic\RequestBeanTwo;
 use Swoft\Bean\Annotation\Mapping\Inject;
 use Swoft\Bean\BeanFactory;
 use Swoft\Co;
+use Swoft\Db\DB;
 use Swoft\Http\Server\Annotation\Mapping\Controller;
 use Swoft\Http\Server\Annotation\Mapping\RequestMapping;
 use Swoft\Http\Message\Response;
@@ -162,6 +163,76 @@ class TestDbController
         $user->setMobile("555555555555555");
         $user->save();
         return "Success";
+    }
+
+    /**
+     * 该方法路由地址为 /td/db
+     * @RequestMapping(route="db")
+     */
+    public function db()
+    {
+// 查询构造器新增数据
+//        return  DB::table('sandy_user')->insertGetId([
+//            'mobile' => '15011111111',
+//            'password'  => 'qqqqqqqqqqqqqq',
+//            'createtime'=>date("Y-m-d H:i:s")
+//        ]);
+
+        // 单数据
+//        /** @var bool */
+//        $ret = DB::table('sandy_user')->insert(
+//            [
+//                'mobile' => '15011111112',
+//                'password'  => 'sssssss',
+//                'createtime'=>date("Y-m-d H:i:s")
+//            ]
+//        );
+//
+//        return $ret;
+
+// 多数据
+        /** @var bool */
+//        $ret = DB::table('sandy_user')->insert([
+//            [
+//                'mobile' => '15011111113',
+//                'password'  => 'sssssss',
+//                'createtime'=>date("Y-m-d H:i:s")
+//            ],
+//            [
+//                'mobile' => '15011111114',
+//                'password'  => 'sssssss',
+//                'createtime'=>date("Y-m-d H:i:s")
+//            ]
+//        ]);
+//        return $ret;
+
+//        单行查询
+//        $user = DB::table('sandy_user')->where('mobile', '15011111113')->first();
+//        return $user;
+
+        //删除数据
+//        DB::table('sandy_user')->where('id', '>', 14)->delete();
+
+        //更新数据
+//        DB::table('sandy_user')
+//            ->where('id', 14)
+//            ->update(['password' => "14141414141414144"]);
+
+//聚合函数
+//        $users = DB::table('sandy_user')->selectRaw('count(*) AS `user_count`, avg(id) AS `avg_id`')->get();
+//
+//        return $users;
+
+
+//        记录是否存在
+//        return DB::table('sandy_user')->where('id', 1)->exists();
+
+
+//        分页
+//        $users = DB::table('sandy_user')->offset(5)->limit(5)->get();
+//        return $users;
+
+
     }
     
 
