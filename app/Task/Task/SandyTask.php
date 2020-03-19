@@ -31,7 +31,7 @@ class SandyTask
      * @return mixed
      */
    public  function co($data,$data1,$data2){
-       sleep(3);
+       sleep(1);
        echo ($data+$data1+$data2)."\n";
        return $data+$data1+$data2;
    }
