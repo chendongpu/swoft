@@ -40,6 +40,8 @@ class CronTask
         // $id   = $user->getId();
         // $user = User::find($id)->toArray();
 
+        echo "每秒执行一次,lalala\n";
+
         CLog::info('second task run: %s ', date('Y-m-d H:i:s'));
         // CLog::info(JsonHelper::encode($user));
     }
@@ -49,6 +51,7 @@ class CronTask
      */
     public function minuteTask(): void
     {
+        echo "每分钟执行一次,lalala\n";
         CLog::info('minute task run: %s ', date('Y-m-d H:i:s'));
     }
 }
