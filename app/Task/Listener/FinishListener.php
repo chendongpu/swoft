@@ -31,7 +31,7 @@ class FinishListener implements EventHandlerInterface
      */
     public function handle(EventInterface $event): void
     {
-        var_dump("task finish",$event->getParams());
+        //var_dump("task finish",$event->getParams());
         CLog::info(context()->getTaskUniqid());
     }
 }
