@@ -31,10 +31,11 @@ class Worker1Process implements ProcessInterface
      */
     public function run(Pool $pool, int $workerId): void
     {
+        echo "进程池执行xxxxxxxxxxx";//这里只执行一次
         while (true) {
             CLog::info('worker-' . $workerId);
-
-            Coroutine::sleep(3);
+            echo "进程池执行Worker1Process".'worker-' . $workerId."\n";
+            Coroutine::sleep(10);
         }
     }
 }

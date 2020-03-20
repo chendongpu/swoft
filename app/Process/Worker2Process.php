@@ -38,17 +38,19 @@ class Worker2Process implements ProcessInterface
     {
         while (true) {
 
-            // Database
-            $user = User::find(1)->toArray();
-            CLog::info('user='.json_encode($user));
+            echo "进程池执行Worker2Process\n";
 
-            // Redis
-            Redis::set('test', 'ok');
-            CLog::info('test='.Redis::get('test'));
-
-            CLog::info('worker-' . $workerId.' context='.context()->getWorkerId());
-
-            Coroutine::sleep(3);
+//            // Database
+//            $user = User::find(1)->toArray();
+//            CLog::info('user='.json_encode($user));
+//
+//            // Redis
+//            Redis::set('test', 'ok');
+//            CLog::info('test='.Redis::get('test'));
+//
+//            CLog::info('worker-' . $workerId.' context='.context()->getWorkerId());
+//
+            Coroutine::sleep(10);
         }
     }
 }

@@ -46,7 +46,7 @@ return [
             // 'ws' => bean('wsServer')
         ],
         'process'  => [
-            'sandy' => bean(SandyProcess::class)
+//            'sandy' => bean(SandyProcess::class)
 //            'monitor' => bean(MonitorProcess::class)
 //            'crontab' => bean(CrontabProcess::class)
         ],
@@ -61,6 +61,10 @@ return [
             'task_enable_coroutine' => true,
             'worker_num'            => 6
         ]
+    ],
+    'processPool' => [
+        'class' => \Swoft\Process\ProcessPool::class,
+        'workerNum' => 3
     ],
     'httpDispatcher'    => [
         // Add global http middleware
