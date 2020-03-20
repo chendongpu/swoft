@@ -15,6 +15,7 @@ use App\Model\Logic\RequestBean;
 use App\Model\Logic\RequestBeanTwo;
 use PhpAmqpLib\Connection\AMQPStreamConnection;
 use PhpAmqpLib\Message\AMQPMessage;
+use PhpAmqpLib\Wire\AMQPTable;
 use Swoft\Bean\Annotation\Mapping\Inject;
 use Swoft\Bean\BeanFactory;
 use Swoft\Co;
@@ -40,13 +41,26 @@ class TestRabbitmqController
      */
     public function push()
     {
-        $connection = new AMQPStreamConnection("localhost",5672,"guest","guest");
+/*      $connection = new AMQPStreamConnection("localhost",5672,"guest","guest");
       $channel = $connection->channel();
       $channel->queue_declare("sandy",false,false,false,false);
       $msg = new AMQPMessage("Sandy:".time());
       $channel->basic_publish($msg,'',"sandy");
       $channel->close();
-      $connection->close();
+      $connection->close();*/
+
+
+        $table = new AMQPTable();
+        $table->set("x-message-ttl",5000);
+        $table->set("x-dead-letter-exchange","delay.5s.topic");
+
+        $connection = new AMQPStreamConnection("localhost",5672,"guest","guest");
+        $channel = $connection->channel();
+        $channel->queue_declare("delay.5s.sandy",false,true,false,false,false,$table);
+        $msg = new AMQPMessage("Sandy:".time());
+        $channel->basic_publish($msg,'',"delay.5s.sandy");
+        $channel->close();
+        $connection->close();
       return "Success";
 
     }
