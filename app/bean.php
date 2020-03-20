@@ -9,6 +9,7 @@
  */
 use App\Common\DbSelector;
 use App\Process\MonitorProcess;
+use \App\Process\SandyProcess;
 use Swoft\Crontab\Process\CrontabProcess;
 use Swoft\Db\Pool;
 use Swoft\Http\Server\HttpServer;
@@ -45,6 +46,7 @@ return [
             // 'ws' => bean('wsServer')
         ],
         'process'  => [
+            'sandy' => bean(SandyProcess::class)
 //            'monitor' => bean(MonitorProcess::class)
 //            'crontab' => bean(CrontabProcess::class)
         ],
