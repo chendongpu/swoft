@@ -47,5 +47,13 @@ class SandyTask
         return $data+$data1;
     }
 
+    /**
+     * @TaskMapping(name="redis")
+     * @param $data
+     */
+    public  function redis($data){
+        echo $data."\n";
+    }
+
 
 }

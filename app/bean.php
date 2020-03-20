@@ -46,7 +46,7 @@ return [
             // 'ws' => bean('wsServer')
         ],
         'process'  => [
-//            'sandy' => bean(SandyProcess::class)
+            'sandy' => bean(SandyProcess::class)
 //            'monitor' => bean(MonitorProcess::class)
 //            'crontab' => bean(CrontabProcess::class)
         ],

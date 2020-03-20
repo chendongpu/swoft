@@ -17,7 +17,9 @@ use Swoft\Bean\Annotation\Mapping\Inject;
 use Swoft\Db\Exception\DbException;
 use Swoft\Process\Process;
 use Swoft\Process\UserProcess;
+use Swoft\Redis\Redis;
 use Swoft\Task\Task;
+use Swoole\Coroutine;
 
 /**
  * Class SandyProcess
@@ -35,7 +37,15 @@ class SandyProcess extends UserProcess
      */
     public function run(Process $process): void
     {
-        Task::async("SandyTask","async",[1,2]);
-        echo "用户进程\n";
+
+        $res = Redis::lpop('message');
+
+        if($res){
+           // echo $res."\n";
+
+            Task::async("SandyTask","redis",[$res]);
+        }
+        Coroutine::sleep(1);
+
     }
 }
