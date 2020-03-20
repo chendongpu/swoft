@@ -36,10 +36,10 @@ class TestRabbitmqController
 
 
     /**
-     * 该方法路由地址为 /rabbitmq/push
-     * @RequestMapping(route="push")
+     * 该方法路由地址为 /rabbitmq/push/5
+     * @RequestMapping(route="push/{id}")
      */
-    public function push()
+    public function push(int $id)
     {
 /*      $connection = new AMQPStreamConnection("localhost",5672,"guest","guest");
       $channel = $connection->channel();
@@ -50,7 +50,7 @@ class TestRabbitmqController
       $connection->close();*/
 
 
-        $table = new AMQPTable();
+/*        $table = new AMQPTable();
         $table->set("x-message-ttl",5000);
         $table->set("x-dead-letter-exchange","delay.5s.topic");
 
@@ -60,7 +60,29 @@ class TestRabbitmqController
         $msg = new AMQPMessage("Sandy:".time());
         $channel->basic_publish($msg,'',"delay.5s.sandy");
         $channel->close();
+        $connection->close();*/
+
+        $connection = new AMQPStreamConnection("localhost",5672,"guest","guest");
+        $channel = $connection->channel();
+
+        // 创建交换机
+        $exchange = "delay.sandy.topic";
+        $channel->exchange_declare($exchange,"fanout",false,true,false);
+        $channel->queue_bind("sandy",$exchange);
+
+        // 创建队列
+        $num = $id;
+        $queue = "delay.{$num}s.topic";
+        $table = new AMQPTable();
+        $table->set("x-message-ttl",intval($num.'000'));
+        $table->set("x-dead-letter-exchange",$exchange);
+
+        $channel->queue_declare($queue,false,true,false,false,false,$table);
+        $msg = new AMQPMessage("Sandy:".time());
+        $channel->basic_publish($msg,'',$queue);
+        $channel->close();
         $connection->close();
+
       return "Success";
 
     }
