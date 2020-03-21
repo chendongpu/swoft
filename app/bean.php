@@ -47,7 +47,7 @@ return [
             // 'ws' => bean('wsServer')
         ],
         'process'  => [
-            'rabbitmq' => bean(RabbitMqProcess::class)
+//            'rabbitmq' => bean(RabbitMqProcess::class)
 //            'sandy' => bean(SandyProcess::class)
 //            'monitor' => bean(MonitorProcess::class)
 //            'crontab' => bean(CrontabProcess::class)
