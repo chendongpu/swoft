@@ -160,8 +160,8 @@ return [
     ],
     'user'              => [
         'class'   => ServiceClient::class,
-        'host'    => '127.0.0.1',
-        'port'    => 18307,
+        'host'    => '192.168.0.134',//配置服务端ip
+        'port'    => 18307,//配置服务端端口
         'setting' => [
             'timeout'         => 0.5,
             'connect_timeout' => 1.0,
@@ -172,10 +172,11 @@ return [
     ],
     'user.pool'         => [
         'class'  => ServicePool::class,
-        'client' => bean('user'),
+        'client' => bean('user'),//定义了一个 user 服务
     ],
     'rpcServer'         => [
         'class' => ServiceServer::class,
+        //'port'=>18308 //配置启动端口号,默认为18307
     ],
     'wsServer'          => [
         'class'   => WebSocketServer::class,

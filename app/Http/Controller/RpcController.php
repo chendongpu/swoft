@@ -22,7 +22,7 @@ use Swoft\Rpc\Client\Annotation\Mapping\Reference;
  *
  * @since 2.0
  *
- * @Controller()
+ * @Controller(prefix="rpc")
  */
 class RpcController
 {
@@ -41,6 +41,21 @@ class RpcController
     private $userService2;
 
     /**
+     *
+     * 访问rpc服务端上的服务:http://192.168.0.135:18306/rpc/getList
+     * [
+     *    {
+     *       "name": [
+     *           "list"
+     *        ]
+     *    },
+     *    {
+     *        "name": [
+     *            "list"
+     *        ],
+     *        "v": "1.2"
+     *    }
+     * ]
      * @RequestMapping("getList")
      *
      * @return array
